@@ -36,3 +36,9 @@ script = ExtResource("1_wrm1d")
 [node name="Ground" type="TileMapLayer" parent="."]
 use_parent_material = true
 tile_set = SubResource("TileSet_wrm1d")
+
+[node name="SnakeTick" type="Timer" parent="."]
+wait_time = 0.25
+autostart = true
+
+[connection signal="timeout" from="SnakeTick" to="." method="_on_snake_tick_timeout"]
