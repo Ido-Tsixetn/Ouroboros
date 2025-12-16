@@ -44,18 +44,41 @@ func delete_tiles(id:int):
 		$Ground.set_cell(Vector2i(cell.x, cell.y), -1)
 		
 func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("ui_up"): snake_direction = Vector2 (0, -1)
-	if Input.is_action_just_pressed("ui_down"): snake_direction = Vector2 (0, 1)
-	if Input.is_action_just_pressed("ui_left"): snake_direction = Vector2 (-1, 0)
-	if Input.is_action_just_pressed("ui_right"): snake_direction = Vector2 (1, 0)
+	if Input.is_action_just_pressed("ui_up"): 
+		if not snake_direction == Vector2(0,1):
+			snake_direction = Vector2 (0, -1)
+	if Input.is_action_just_pressed("ui_down"): 
+		if not snake_direction == Vector2(0,-1):
+			snake_direction = Vector2 (0, 1)
+	if Input.is_action_just_pressed("ui_left"): 
+		if not snake_direction == Vector2(1,0):
+			snake_direction = Vector2 (-1, 0)
+	if Input.is_action_just_pressed("ui_right"): 
+		if not snake_direction == Vector2(-1,0):
+			snake_direction = Vector2 (1, 0)
 
 func check_apple_eaten ():
 	if apple_pos == snake_body[0]:
 		apple_pos = place_apple()
 		add_apple = true
 
+func check_game_over():
+	var head = snake_body[0]
+	if head.x > 19 or head.x < 0 or head.y < 0 or head.y > 19:
+		reset()
+		
+	for block in snake_body.slice(1, snake_body.size() - 1):
+		if block == head:
+			reset()
+func reset ():
+	snake_body = [Vector2(5,10), Vector2(4,10), Vector2(3,10)]
+	snake_direction = Vector2(1,0)
+
 func _on_snake_tick_timeout() -> void:
 	move_snake()
 	draw_apple()
 	draw_snake()
 	check_apple_eaten()
+	
+func _process(delta):
+	check_game_over()
