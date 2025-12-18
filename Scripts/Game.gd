@@ -20,8 +20,56 @@ func draw_apple():
 	$Ground.set_cell(Vector2i(apple_pos.x, apple_pos.y), APPLE, Vector2i(0,0), 0)
 
 func draw_snake():
-	for block in snake_body:
-		$Ground.set_cell(Vector2i(block.x, block.y), SNAKE, Vector2i(7,0), 0)
+	#for block in snake_body:
+		#$Ground.set_cell(Vector2i(block.x, block.y), SNAKE, Vector2i(7,0), 0)
+		
+	for block_index in snake_body.size():
+		var block = snake_body[block_index]
+		
+		if block_index == 0:
+			var head_dir = relation2(snake_body[0], snake_body[1])
+			if (head_dir == 'right'):
+				$Ground.set_cell(Vector2i(block.x, block.y), SNAKE, Vector2i(3,1), 0)
+			if (head_dir == 'left'):
+				$Ground.set_cell(Vector2i(block.x, block.y), SNAKE, Vector2i(2,0), 0)
+			if (head_dir == 'down'):
+				$Ground.set_cell(Vector2i(block.x, block.y), SNAKE, Vector2i(2,1), 0)
+			if (head_dir == 'up'):
+				$Ground.set_cell(Vector2i(block.x, block.y), SNAKE, Vector2i(3,0), 0)
+		elif block_index == snake_body.size() - 1:
+			var tail_dir = relation2(snake_body[-1], snake_body[-2])
+			if (tail_dir == 'right'):
+				$Ground.set_cell(Vector2i(block.x, block.y), SNAKE, Vector2i(0,0), 0)
+			if (tail_dir == 'left'):
+				$Ground.set_cell(Vector2i(block.x, block.y), SNAKE, Vector2i(1,0), 0)
+			if (tail_dir == 'down'):
+				$Ground.set_cell(Vector2i(block.x, block.y), SNAKE, Vector2i(0,1), 0)
+			if (tail_dir == 'up'):
+				$Ground.set_cell(Vector2i(block.x, block.y), SNAKE, Vector2i(1,1), 0)
+		else:
+			var previous_block = snake_body[block_index + 1] - block
+			var next_block = snake_body[block_index - 1] - block
+			
+			if previous_block.x == next_block.x:
+				$Ground.set_cell(Vector2i(block.x, block.y), SNAKE, Vector2i(4,1), 0)
+			elif previous_block.y == next_block.y:
+				$Ground.set_cell(Vector2i(block.x, block.y), SNAKE, Vector2i(4,0), 0)			
+			else:
+				if previous_block.x == -1 and next_block.y == -1 or next_block.x == -1 and previous_block.y == -1:
+					$Ground.set_cell(Vector2i(block.x, block.y), SNAKE, Vector2i(6,1), 0)
+				elif previous_block.x == -1 and next_block.y == 1 or next_block.x == -1 and previous_block.y == 1:
+					$Ground.set_cell(Vector2i(block.x, block.y), SNAKE, Vector2i(6,0), 0)
+				elif previous_block.x == 1 and next_block.y == -1 or next_block.x == 1 and previous_block.y == -1:
+					$Ground.set_cell(Vector2i(block.x, block.y), SNAKE, Vector2i(5,1), 0)
+				elif previous_block.x == 1 and next_block.y == 1 or next_block.x == 1 and previous_block.y == 1:
+					$Ground.set_cell(Vector2i(block.x, block.y), SNAKE, Vector2i(5,0), 0)
+
+func relation2 (first_block:Vector2, second_block:Vector2):
+	var block_relation = second_block - first_block
+	if block_relation == Vector2(-1, 0): return 'left'
+	if block_relation == Vector2(1, 0): return 'right'
+	if block_relation == Vector2(0, 1): return 'down'
+	if block_relation == Vector2(0, -1): return 'up'
 
 func move_snake():
 	if add_apple:
