@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://drt67aat0vpel"]
+[gd_scene load_steps=9 format=3 uid="uid://drt67aat0vpel"]
 
 [ext_resource type="Texture2D" uid="uid://c8iido0a17pga" path="res://Sprites/Snake_SpriteSheet.png" id="1_ebmjs"]
 [ext_resource type="Script" uid="uid://c8wjtiln8hy7n" path="res://Scripts/Game.gd" id="1_wrm1d"]
 [ext_resource type="Texture2D" uid="uid://c2jx4e8x4cjgm" path="res://Sprites/Apple_SpriteSheet.png" id="3_3dryh"]
+[ext_resource type="PackedScene" uid="uid://0ffrnb4su3lu" path="res://Scenes/score.tscn" id="4_3dryh"]
+[ext_resource type="Texture2D" uid="uid://djxjt352yrieg" path="res://Sprites/background.png" id="5_wowpa"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qxrlw"]
 texture = ExtResource("1_ebmjs")
@@ -40,5 +42,18 @@ tile_set = SubResource("TileSet_wrm1d")
 [node name="SnakeTick" type="Timer" parent="."]
 wait_time = 0.25
 autostart = true
+
+[node name="Score" parent="SnakeTick" instance=ExtResource("4_3dryh")]
+
+[node name="Ground2" type="TextureRect" parent="."]
+z_index = -1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+texture = ExtResource("5_wowpa")
+stretch_mode = 1
 
 [connection signal="timeout" from="SnakeTick" to="." method="_on_snake_tick_timeout"]
