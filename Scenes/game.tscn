@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://drt67aat0vpel"]
+[gd_scene load_steps=11 format=3 uid="uid://drt67aat0vpel"]
 
 [ext_resource type="Texture2D" uid="uid://c8iido0a17pga" path="res://Sprites/Snake_SpriteSheet.png" id="1_ebmjs"]
 [ext_resource type="Script" uid="uid://c8wjtiln8hy7n" path="res://Scripts/Game.gd" id="1_wrm1d"]
 [ext_resource type="Texture2D" uid="uid://c2jx4e8x4cjgm" path="res://Sprites/Apple_SpriteSheet.png" id="3_3dryh"]
 [ext_resource type="PackedScene" uid="uid://0ffrnb4su3lu" path="res://Scenes/score.tscn" id="4_3dryh"]
+[ext_resource type="Texture2D" uid="uid://bd7umvaw2ysuk" path="res://Sprites/Corner_non_animation.png" id="4_i6g32"]
 [ext_resource type="Texture2D" uid="uid://djxjt352yrieg" path="res://Sprites/background.png" id="5_wowpa"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qxrlw"]
@@ -28,15 +29,30 @@ texture = ExtResource("1_ebmjs")
 texture = ExtResource("3_3dryh")
 0:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1l0tm"]
+texture = ExtResource("4_i6g32")
+0:0/animation_columns = 24
+0:0/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_wrm1d"]
 sources/0 = SubResource("TileSetAtlasSource_qxrlw")
 sources/1 = SubResource("TileSetAtlasSource_wowpa")
+sources/2 = SubResource("TileSetAtlasSource_1l0tm")
 
 [node name="Game" type="Node"]
 script = ExtResource("1_wrm1d")
 
-[node name="Ground" type="TileMapLayer" parent="."]
+[node name="Ground3" type="TileMapLayer" parent="."]
+modulate = Color(1.6093352, 1.6093352, 1.6093352, 0.2)
+texture_filter = 3
 use_parent_material = true
+tile_map_data = PackedByteArray(0, 0, 10, 0, 9, 0, 0, 0, 2, 0, 1, 0, 0, 0, 10, 0, 10, 0, 0, 0, 4, 0, 1, 0, 0, 0, 10, 0, 11, 0, 0, 0, 1, 0, 1, 0, 0, 0)
+tile_set = SubResource("TileSet_wrm1d")
+
+[node name="Ground" type="TileMapLayer" parent="."]
+texture_filter = 1
+use_parent_material = true
+tile_map_data = PackedByteArray(0, 0, 8, 0, 10, 0, 2, 0, 0, 0, 0, 0, 0, 0)
 tile_set = SubResource("TileSet_wrm1d")
 
 [node name="SnakeTick" type="Timer" parent="."]
@@ -47,9 +63,12 @@ autostart = true
 
 [node name="Ground2" type="TextureRect" parent="."]
 z_index = -1
+texture_filter = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -1.0
+offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4

@@ -3,8 +3,9 @@ extends Node
 const SNAKE = 0
 const APPLE = 1
 var apple_pos
-var snake_body = [Vector2(5,10), Vector2(4,10), Vector2(3,10)]
-var snake_direction = Vector2(1,0)
+var snake_body = [Vector2(10,10), Vector2(10,11), Vector2(10,12)]
+var snake_direction = Vector2(0,-1)
+var new_direction = Vector2(0,-1)
 var add_apple = false
 
 func _ready():
@@ -72,6 +73,7 @@ func relation2 (first_block:Vector2, second_block:Vector2):
 	if block_relation == Vector2(0, -1): return 'up'
 
 func move_snake():
+	snake_direction = new_direction
 	if add_apple:
 		delete_tiles(SNAKE)
 		var body_copy = snake_body.slice(0,snake_body.size())
@@ -94,16 +96,16 @@ func delete_tiles(id:int):
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("ui_up"): 
 		if not snake_direction == Vector2(0,1):
-			snake_direction = Vector2 (0, -1)
+			new_direction = Vector2 (0, -1)
 	if Input.is_action_just_pressed("ui_down"): 
 		if not snake_direction == Vector2(0,-1):
-			snake_direction = Vector2 (0, 1)
+			new_direction = Vector2 (0, 1)
 	if Input.is_action_just_pressed("ui_left"): 
 		if not snake_direction == Vector2(1,0):
-			snake_direction = Vector2 (-1, 0)
+			new_direction = Vector2 (-1, 0)
 	if Input.is_action_just_pressed("ui_right"): 
 		if not snake_direction == Vector2(-1,0):
-			snake_direction = Vector2 (1, 0)
+			new_direction = Vector2 (1, 0)
 
 func check_apple_eaten ():
 	if apple_pos == snake_body[0]:
@@ -120,8 +122,8 @@ func check_game_over():
 		if block == head:
 			reset()
 func reset ():
-	snake_body = [Vector2(5,10), Vector2(4,10), Vector2(3,10)]
-	snake_direction = Vector2(1,0)
+	snake_body = [Vector2(10,10), Vector2(10,11), Vector2(10,12)]
+	snake_direction = Vector2(0,-1)
 
 func _on_snake_tick_timeout() -> void:
 	move_snake()
