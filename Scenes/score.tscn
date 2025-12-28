@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://0ffrnb4su3lu"]
+[gd_scene load_steps=3 format=3 uid="uid://0ffrnb4su3lu"]
 
-[ext_resource type="Script" uid="uid://bck82t3t3uatr" path="res://Scenes/score.gd" id="1_0f7a8"]
+[ext_resource type="Script" uid="uid://bck82t3t3uatr" path="res://Scripts/score.gd" id="1_0f7a8"]
+[ext_resource type="FontFile" uid="uid://kochfu26rh7v" path="res://Fonts/BelanidiSerif-Regular.otf" id="2_hnwbn"]
 
 [node name="Score" type="Node2D" groups=["ScoreGroup"]]
 script = ExtResource("1_0f7a8")
@@ -8,4 +9,6 @@ script = ExtResource("1_0f7a8")
 [node name="ScoreText" type="Label" parent="."]
 offset_right = 40.0
 offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("2_hnwbn")
+theme_override_font_sizes/font_size = 20
 text = "0"

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Ouroboros"
-run/main_scene="uid://drt67aat0vpel"
+run/main_scene="uid://b4xfx2mx2klt5"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 

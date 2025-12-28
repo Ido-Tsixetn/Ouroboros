@@ -1,0 +1,70 @@
+[gd_scene load_steps=2 format=3 uid="uid://dl24kou03fer8"]
+
+[ext_resource type="FontFile" uid="uid://kochfu26rh7v" path="res://Fonts/BelanidiSerif-Regular.otf" id="1_w31pl"]
+
+[node name="Title" type="Node"]
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Label" type="Label" parent="Node2D"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 72.0
+offset_top = 93.0
+offset_right = 250.0
+offset_bottom = 138.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("1_w31pl")
+theme_override_font_sizes/font_size = 20
+text = "Ouroboros"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Node2D2" type="Node2D" parent="."]
+position = Vector2(0, 82)
+
+[node name="Label" type="Label" parent="Node2D2"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 72.0
+offset_top = 93.0
+offset_right = 250.0
+offset_bottom = 138.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("1_w31pl")
+theme_override_font_sizes/font_size = 15
+text = "Play"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Node2D3" type="Node2D" parent="."]
+position = Vector2(0, 107)
+
+[node name="Label" type="Label" parent="Node2D3"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 72.0
+offset_top = 93.0
+offset_right = 250.0
+offset_bottom = 138.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("1_w31pl")
+theme_override_font_sizes/font_size = 15
+text = "Quit"
+horizontal_alignment = 1
+vertical_alignment = 1

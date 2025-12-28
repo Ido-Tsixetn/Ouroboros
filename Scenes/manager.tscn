@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4xfx2mx2klt5"]
+
+[ext_resource type="Script" uid="uid://b1x45xpiahgg8" path="res://Scripts/manager.gd" id="1_ewkdb"]
+[ext_resource type="Texture2D" uid="uid://djxjt352yrieg" path="res://Sprites/background.png" id="2_wtnv7"]
+
+[node name="Manager" type="Node"]
+script = ExtResource("1_ewkdb")
+
+[node name="Ground2" type="TextureRect" parent="."]
+z_index = -1
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+texture = ExtResource("2_wtnv7")
+stretch_mode = 1
